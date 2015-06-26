@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="no_image_text_background_red">#F44336</color>
+    <color name="no_image_text_background_pink">#E91E63</color>
+    <color name="no_image_text_background_purple">#9C27B0</color>
+    <color name="no_image_text_background_deeppurple">#673AB7</color>
+    <color name="no_image_text_background_indigo">#3F51B5</color>
+    <color name="no_image_text_background_blue">#2196F3</color>
+    <color name="no_image_text_background_lightblue">#03A9F4</color>
+    <color name="no_image_text_background_cyan">#00BCD4</color>
+    <color name="no_image_text_background_teal">#009688</color>
+    <color name="no_image_text_background_green">#4CAF50</color>
+    <color name="no_image_text_background_lightgreen">#8BC34A</color>
+    <color name="no_image_text_background_lime">#CDDC39</color>
+    <color name="no_image_text_background_yellow">#FFEB3B</color>
+    <color name="no_image_text_background_amber">#FFC107</color>
+    <color name="no_image_text_background_orange">#FF9800</color>
+    <color name="no_image_text_background_deeporange">#FF5722</color>
+    <color name="no_image_text_background_brown">#795548</color>
+    <color name="no_image_text_background_grey">#9E9E9E</color>
+    <color name="no_image_text_background_bluegrey">#607D8B</color>
+    <color name="no_image_text_color">#FFFFFF</color>
+</resources>

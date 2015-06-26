@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Spotify Streamer</string>
+    <string name="no_image">No Image</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_artist_name_to_searh_hint">Artist name to search</string>
+    <string name="text1" translatable="false">text 1</string>
+    <string name="text2" translatable="false">text 2</string>
+    <string name="artist_album_icon">Artist/Album Icon</string>
+    <string name="title_top_tracks_activity">Top 10 Tracks</string>
+    <string name="no_artists_found">No artists found.\nPlease refine your search.</string>
+    <string name="no_tracks_found">No tracks found</string>
+    <string name="preposition_for">for</string>
+</resources>

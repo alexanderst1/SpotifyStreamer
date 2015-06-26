@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/listItemImage"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_margin="6dip"
+        android:gravity="center_vertical|start"
+        android:src="@drawable/ic_launcher"
+        android:contentDescription="@string/artist_album_icon"/>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_margin="6dip"
+        android:id="@+id/listItemTextNoImage"
+        android:text="@string/no_image"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@color/no_image_text_color"
+        android:background="@color/no_image_text_background_amber" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dip"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical|start">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/listItemText1"
+        android:text="@string/text1" />
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/listItemText2"
+        android:text="@string/text2" />
+
+    </LinearLayout>
+
+</LinearLayout>
