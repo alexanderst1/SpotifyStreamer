@@ -8,6 +8,7 @@ import kaaes.spotify.webapi.android.models.Image;
 
 /**
  * Created by Alexander on 6/23/2015.
+ * 8/21/15 - this class is not used in current version of the app and is left by nostalgic reason...
  */
 class ImageHelper {
     List<SortableImage> sortedImages = new ArrayList<SortableImage>();

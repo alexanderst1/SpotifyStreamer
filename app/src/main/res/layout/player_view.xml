@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Artist Name"
+        android:id="@+id/artistName"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical|center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Album Name"
+        android:id="@+id/albumName"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical|center_horizontal"/>
+
+    <ImageView
+        android:layout_width="@dimen/player_artwork_width"
+        android:layout_height="@dimen/player_artwork_height"
+        android:id="@+id/imageView"
+        android:layout_gravity="center"
+        android:src="@android:drawable/sym_def_app_icon"
+        android:gravity="center_vertical|center_horizontal"/>
+    <TextView
+        android:layout_width="@dimen/player_artwork_width"
+        android:layout_height="@dimen/player_artwork_height"
+        android:id="@+id/textNoImage"
+        android:layout_gravity="center"
+        android:text="@string/no_image"
+        android:textColor="@color/no_image_text_color"
+        android:background="@color/no_image_text_background_amber"
+        android:gravity="center_vertical|center_horizontal"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Track Name"
+        android:id="@+id/trackName"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical|center_horizontal"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:maxHeight="30dp"
+        android:minHeight="30dp"
+        android:id="@+id/seekBar"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:weightSum="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="top|center_horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0:00"
+            android:id="@+id/elapsedTime"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="1:00"
+            android:id="@+id/totalTime"
+            android:gravity="right"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center_horizontal">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
+            android:id="@+id/prevTrack"
+            android:src="@android:drawable/ic_media_previous" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
+            android:id="@+id/playOrPause"
+            android:src="@android:drawable/ic_media_play" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
+            android:id="@+id/nextTrack"
+            android:src="@android:drawable/ic_media_next" />
+
+    </LinearLayout>
+
+</LinearLayout>

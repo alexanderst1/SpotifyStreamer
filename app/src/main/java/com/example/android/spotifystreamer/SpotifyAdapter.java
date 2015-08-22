@@ -1,71 +1,68 @@
 package com.example.android.spotifystreamer;
 
 import android.app.Activity;
+import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
-import kaaes.spotify.webapi.android.models.Artist;
-import kaaes.spotify.webapi.android.models.Image;
-import kaaes.spotify.webapi.android.models.Track;
-
 /**
  * Created by Alexander on 6/23/2015.
  */
-public class SpotifyArrayAdapter<T> extends ArrayAdapter<T> {
-    List<T> items;
+public class SpotifyAdapter extends CursorAdapter {
     Activity mActivity;
+
+    public enum DataType {
+        Artists,
+        Tracks
+    }
+
+    DataType mDataType;
 
     // Start index of sequence of background colors used for "No Image" icon
     // (for artists/tracks not having images)
     // defined in Utility.NOIMAGE_BACKGROUND_COLOR_IDS
-    int mNoImageBgColorStartIndex = 0;
-    public void SetNoImageBgColorStartIndex(int index){
+    private int mNoImageBgColorStartIndex = 0;
+    public void setNoImageBgColorStartIndex(int index){
         mNoImageBgColorStartIndex = index;
     }
+    public int getNoImageBgColorStartIndex(){
+        return mNoImageBgColorStartIndex;
+    }
 
-    public SpotifyArrayAdapter(Activity activity, int resource, List<T> items) {
-        super(activity, resource, items);
-        this.items = items;
+    public SpotifyAdapter(DataType dataType, Activity activity, Cursor c, int flags) {
+        super(activity, c, flags);
         this.mActivity = activity;
+        this.mDataType = dataType;
+    }
+
+    private int mPos = 0;
+    @Override
+    public View getView(int pos, View convertView, ViewGroup parent) {
+        mPos = pos;
+        return super.getView(pos, convertView, parent);
     }
 
     @Override
-    public View getView(int pos, View convertView, ViewGroup parent) {
+    public void bindView(View view, Context context, Cursor cursor) {
 
-        float ratio = Utility.getFloatFromResources(mActivity.getResources(),
-                R.dimen.image_height_to_view_height_ratio);
-        // Image will have a square shape
-        // ratio = 0.8 is used for image to have some padding from top and bottom of view
-        int imgHeight = (int) (Utility.getListPreferredItemHeight(mActivity) * ratio);
-        int imgWidth = imgHeight;
-
-        ViewHolder holder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(mActivity).inflate(R.layout.list_item, null);
-            holder = new ViewHolder(convertView, imgWidth, imgHeight);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder)convertView.getTag();
-        }
-        Object item = items.get(pos);
-        List<Image> images = null;
+        ViewHolder holder = (ViewHolder) view.getTag();
         String text1 = null;
         String text2 = null;
-        if (item instanceof Artist) {
-            text1 = ((Artist) item).name;
-            images = ((Artist) item).images;
-        } else if (item instanceof Track) {
-            text1 = ((Track)item).name;
-            text2 = ((Track)item).album.name;
-            images = ((Track)item).album.images;
+        String imageUri = null;
+        if (mDataType == DataType.Artists) {
+            text1 = cursor.getString(MainActivityFragment.COL_ARTIST_NAME);
+            imageUri = cursor.getString(MainActivityFragment.COL_ARTIST_IMAGE_URI);
+        } else if (mDataType == DataType.Tracks) {
+            text1 = cursor.getString(TopTracksActivityFragment.COL_TRACK_NAME);
+            text2 = cursor.getString(TopTracksActivityFragment.COL_ALBUM_NAME);
+            imageUri = cursor.getString(TopTracksActivityFragment.COL_TRACK_IMAGE_URI);
         }
         // *** set text ***
         holder.text1.setText(text1);
@@ -76,12 +73,8 @@ public class SpotifyArrayAdapter<T> extends ArrayAdapter<T> {
             holder.text2.setVisibility(View.VISIBLE);
         }
         // *** set image ***
-        if (images != null && !images.isEmpty()) {
-            // If images are available, then pick up smallest one which is larger then view so
-            // that it will be down-scaled a little bit and displayed with good quality
-            ImageHelper imgHelper = new ImageHelper(images);
-            Image img = imgHelper.getSuitableImageForImageView(imgWidth, imgHeight);
-            Picasso.with(mActivity).load(img.url)
+        if (imageUri != null && !imageUri.isEmpty()) {
+            Picasso.with(mActivity).load(imageUri)
                     //.resize(holder.icon.getLayoutParams().width, holder.icon.getLayoutParams().height)
                     //.centerCrop()
                     .into(holder.icon);
@@ -90,15 +83,32 @@ public class SpotifyArrayAdapter<T> extends ArrayAdapter<T> {
         } else {
             // If images are NOT available, then show text "No Image" with backgrounds of different
             // colors so that visually they would NOT be identified as items of the same kind
-            int colorIndex = (pos + mNoImageBgColorStartIndex) %
+            int colorIndex = (mPos + mNoImageBgColorStartIndex) %
                     Utility.NOIMAGE_BACKGROUND_COLOR_IDS.length;
             int bgId = Utility.NOIMAGE_BACKGROUND_COLOR_IDS[colorIndex];
             holder.icon.setVisibility(View.GONE);
             holder.textNoImage.setVisibility(View.VISIBLE);
             holder.textNoImage.setBackgroundColor(mActivity.getResources().getColor(bgId));
         }
-        return convertView;
     }
+
+    @Override
+    public View newView(Context context, Cursor cursor, ViewGroup parent) {
+
+        float ratio = Utility.getFloatFromResources(mActivity.getResources(), R.dimen.image_height_to_view_height_ratio);
+        // Image will have a square shape
+        // ratio = 0.8 is used for image to have some padding from top and bottom of view
+        int imgHeight = (int) (Utility.getListPreferredItemHeight(mActivity) * ratio);
+        int imgWidth = imgHeight;
+
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+
+        ViewHolder holder = new ViewHolder(view, imgWidth, imgHeight);
+        view.setTag(holder);
+
+        return view;
+    }
+
     static class ViewHolder {
         ImageView icon;
         TextView textNoImage;

@@ -5,6 +5,8 @@
     <string name="pref_country_id_key" translatable="false">country_id</string>
     <string name="pref_country_id_default" translatable="false">US</string>
     <string name="pref_country_suffix_for_title" translatable="false">_title</string>
+    <string name="pref_search_string_key" translatable="false">search_string</string>
+    <string name="pref_search_string_default" translatable="false"></string>
 
     <!-- From https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 -->
     <string-array name="pref_countries_list_titles">

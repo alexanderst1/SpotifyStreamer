@@ -2,5 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="player_artwork_height">150dp</dimen>
+    <dimen name="player_artwork_width">150dp</dimen>
     <item name="image_height_to_view_height_ratio" format="float" type="dimen">0.8</item>
 </resources>
