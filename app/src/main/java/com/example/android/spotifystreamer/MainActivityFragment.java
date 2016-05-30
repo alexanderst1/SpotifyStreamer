@@ -220,7 +220,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         } else {
             // Restore scrolling position of list of artists from application global variable
             Pair<Integer,Integer> pairIndexOffset = app.getArtistsListFirstVisibleIndex();
-            mListView.setSelectionFromTop(pairIndexOffset.left,pairIndexOffset.right);
+            mListView.setSelectionFromTop(pairIndexOffset.left, pairIndexOffset.right);
         }
     }
 
